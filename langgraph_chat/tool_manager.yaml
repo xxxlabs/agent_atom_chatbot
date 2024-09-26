@@ -1,0 +1,71 @@
+functions:
+  - name: search
+    description: "View the playback video of the home camera: Help users view the records of certain targets within a specific time. If the user enters a query event, you need to ask which target the event is about."
+    parameters:
+      start_time: 
+        type: "str"
+        description: "The start time for search targets in '%Y-%m-%d %H:%M:%S' format."
+      end_time:
+        type: "str"
+        description: "The end time for search targets in '%Y-%m-%d %H:%M:%S' format."
+      label_type_list:
+        type: "list[int]"
+        description: "The targets list, range in [people/baby, car,  pet]. The encoding mapping relationship is: {people/baby: 101, car: 102, pet: 103}. It has a value only when the user mentions words related to people, cars, or pets, otherwise it is []."
+      keyword:
+        type: "str"
+        description: "The target that the user wants to search for in the video is usually one or more noun entity phrases that may be accompanied by adjectives, which can be a blue car, a red person, etc. If the user is searching for a video segment without a specific target, such as an event or alarm video, then it is '', Represents searching for all videos in this time period. If the user enters a search for alarm videos about people, the keyword is 'people'."
+  
+  - name: setting_camera_voc_switch
+    description: "Operating the switch of the device's external sound can only control the external sound on or off, and cannot increase or decrease the volume."
+    parameters:
+      state:
+        type: "str"
+        description: "State of the sound: '1' for on, '2' for off."
+
+  - name: setting_camera_voc_adjust
+    description: "Adjust the volume of the camera's external speaker, cannot control the microphone sound."
+    parameters:
+      state:
+        type: "str"
+        description: "State of the sound: 'up' to increase, 'down' to decrease."
+      num:
+        type: "str"
+        description: "The volume adjustment level, default is 1."
+
+  - name: control_camera_reset
+    description: "Reset the camera or gimbal to its default position."
+    parameters:
+      reset:
+        type: "str"
+        description: "'1' to reset the camera, '0' otherwise."
+  
+  - name: control_camera_rotation
+    description: "The camera or PTZ rotation function is not supported yet."
+    parameters:
+      direction:
+        type: "str"
+        description: "The direction of camera rotation, ranging from [up, down, left, right]."
+      num:
+        type: "str"
+        description: "The rotation angle, default is '1'."
+
+  - name: qa_helper_product
+    description: "This is a customer service consultation tool for all possible problems that may arise during the use of this product (smart network camera). The search scope it supports covers the basic information of this product and all product-related issues that may be encountered during use, including but not limited to product manual consultation, fault consultation, customer service help requests, etc."
+    parameters:
+      query:
+        type: "str"
+        description: "The user query about the product."
+  
+  - name: general_chat
+    description: "The user's input has nothing to do with the product, it's just a general chat. The user may be saying hello, or asking for general information, or the user wants to have an open-ended Q&A or chat on a certain topic, such as asking about the weather, movies, novels, etc."
+    parameters:
+      query:
+        type: "str"
+        description: "The user's input for a casual conversation."
+
+  - name: submit_feedback
+    description: "Submit feedback function is not supported yet."
+    parameters:
+      query:
+        type: "str"
+        description: "The user's input for submitting feedback"
